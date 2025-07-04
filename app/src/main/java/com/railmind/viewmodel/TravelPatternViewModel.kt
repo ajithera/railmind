@@ -3,35 +3,77 @@ package com.railmind.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.railmind.data.Reminder
+import com.railmind.data.ReminderDao
+import kotlinx.coroutines.launch
 import java.util.*
 
-class TravelPatternViewModel : ViewModel() {
+class TravelPatternViewModel(
+    private val reminderDao: ReminderDao
+) : ViewModel() {
 
-    private val _selectedTravelDays = MutableLiveData<List<DayOfWeek>>()
-    val selectedTravelDays: LiveData<List<DayOfWeek>> get() = _selectedTravelDays
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
-    private val _travelStartDate = MutableLiveData<Date>()
-    val travelStartDate: LiveData<Date> get() = _travelStartDate
+    private val _navigateBack = MutableLiveData<Boolean>()
+    val navigateBack: LiveData<Boolean> = _navigateBack
 
-    private val _travelEndDate = MutableLiveData<Date>()
-    val travelEndDate: LiveData<Date> get() = _travelEndDate
+    fun createTravelPattern(departureDay: String, returnDay: String, monthsRange: Int) {
+        viewModelScope.launch {
+            try {
+                val calendar = Calendar.getInstance()
+                val endDate = Calendar.getInstance().apply {
+                    add(Calendar.MONTH, monthsRange)
+                }
 
-    private val _reminderTime = MutableLiveData<Calendar>()
-    val reminderTime: LiveData<Calendar> get() = _reminderTime
+                while (calendar.before(endDate)) {
+                    // Create departure reminder
+                    if (isDayMatch(calendar, departureDay)) {
+                        createReminder(calendar.time, "Departure")
+                    }
 
-    fun setTravelDays(days: List<DayOfWeek>) {
-        _selectedTravelDays.value = days
+                    // Create return reminder
+                    if (isDayMatch(calendar, returnDay)) {
+                        createReminder(calendar.time, "Return")
+                    }
+
+                    calendar.add(Calendar.DAY_OF_YEAR, 1)
+                }
+
+                _navigateBack.value = true
+            } catch (e: Exception) {
+                _error.value = "Failed to create travel pattern: ${e.localizedMessage}"
+            }
+        }
     }
 
-    fun setTravelStartDate(date: Date) {
-        _travelStartDate.value = date
+    private fun isDayMatch(calendar: Calendar, dayName: String): Boolean {
+        val dayOfWeek = when (dayName) {
+            "Monday" -> Calendar.MONDAY
+            "Tuesday" -> Calendar.TUESDAY
+            "Wednesday" -> Calendar.WEDNESDAY
+            "Thursday" -> Calendar.THURSDAY
+            "Friday" -> Calendar.FRIDAY
+            "Saturday" -> Calendar.SATURDAY
+            "Sunday" -> Calendar.SUNDAY
+            else -> return false
+        }
+        return calendar.get(Calendar.DAY_OF_WEEK) == dayOfWeek
     }
 
-    fun setTravelEndDate(date: Date) {
-        _travelEndDate.value = date
+    private suspend fun createReminder(date: Date, type: String) {
+        val reminder = Reminder(
+            id = 0,
+            travelDate = date,
+            travelPattern = "$type Journey",
+            isEnabled = true,
+            createdAt = Date()
+        )
+        reminderDao.insertReminder(reminder)
     }
 
-    fun setReminderTime(calendar: Calendar) {
-        _reminderTime.value = calendar
+    fun doneNavigating() {
+        _navigateBack.value = false
     }
 }

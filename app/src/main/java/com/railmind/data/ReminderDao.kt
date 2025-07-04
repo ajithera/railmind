@@ -1,18 +1,17 @@
 package com.railmind.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Delete
+import androidx.room.*
 
 @Dao
 interface ReminderDao {
-
     @Insert
     suspend fun insertReminder(reminder: Reminder)
 
     @Delete
     suspend fun deleteReminder(reminder: Reminder)
+
+    @Update
+    suspend fun update(reminder: Reminder)
 
     @Query("SELECT * FROM reminders ORDER BY reminderDate ASC")
     suspend fun getAllReminders(): List<Reminder>

@@ -1,8 +1,11 @@
+package com.railmind.data
+
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
+import androidx.room.withTransaction
 
 @Database(entities = [Reminder::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -25,5 +28,9 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+    }
+
+    suspend inline fun <T> withDatabaseTransaction(crossinline block: suspend () -> T): T {
+        return withTransaction { block() }
     }
 }

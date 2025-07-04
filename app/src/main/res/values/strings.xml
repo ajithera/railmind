@@ -1,16 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RailMind</string>
-    <string name="travel_pattern_label">Select Travel Pattern</string>
-    <string name="departure_day_label">Departure Day</string>
-    <string name="return_day_label">Return Day</string>
-    <string name="time_range_label">Select Time Range</string>
-    <string name="set_reminder_label">Set Reminder</string>
-    <string name="reminder_time_label">Reminder Time</string>
+    
+    <!-- Navigation Labels -->
     <string name="upcoming_reminders_label">Upcoming Reminders</string>
-    <string name="edit_reminder_label">Edit Reminder</string>
-    <string name="delete_reminder_label">Delete Reminder</string>
-    <string name="no_reminders_message">No upcoming reminders.</string>
+    <string name="travel_pattern_label">Travel Pattern</string>
     <string name="settings_label">Settings</string>
-    <string name="notification_preferences_label">Notification Preferences</string>
-    <string name="made_with_love">‘Made with love for hybrid employees’</string>
+
+    <!-- Dashboard -->
+    <string name="no_reminders">No reminders yet. Add your first travel pattern!</string>
+    <string name="add_reminder">Add Reminder</string>
+    <string name="settings">Settings</string>
+
+    <!-- Travel Pattern -->
+    <string name="departure_day">Departure Day</string>
+    <string name="return_day">Return Day</string>
+    <string name="time_range">Time Range (months)</string>
+    <string name="set_reminder">Set Reminder</string>
+
+    <!-- Settings -->
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="reminder_time">Reminder Time</string>
+    <string name="save_settings">Save Settings</string>
+
+    <!-- Reminder Options -->
+    <string name="reminder_options">Reminder Options</string>
+    <string name="edit_reminder">Edit Reminder</string>
+    <string name="delete_reminder">Delete Reminder</string>
+
+    <!-- Notifications -->
+    <string name="reminder_notification_title">Travel Reminder</string>
+    <string name="reminder_notification_text">Don\'t forget to book your tickets for %1$s</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_reminders">Failed to load reminders: %1$s</string>
+    <string name="error_adding_reminder">Failed to add reminder: %1$s</string>
+    <string name="error_updating_reminder">Failed to update reminder: %1$s</string>
+    <string name="error_deleting_reminder">Failed to delete reminder: %1$s</string>
 </resources>
