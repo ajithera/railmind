@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        kotlin_version = '1.8.20'
-        agp_version = '8.1.0'
+        kotlin_version = '1.9.0'
+        agp_version = '8.1.2'
     }
     repositories {
         google()
@@ -20,7 +20,12 @@ plugins {
 
 subprojects {
     tasks.withType(JavaCompile).configureEach {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "19"
+        }
     }
 }
