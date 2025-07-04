@@ -1,23 +1,26 @@
 buildscript {
     ext {
-        kotlin_version = '1.8.21'
+        kotlin_version = '1.8.20'
+        agp_version = '8.1.0'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 plugins {
-    id 'com.android.application' version '8.0.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.21' apply false
+    id 'com.android.application' version "$agp_version" apply false
+    id 'org.jetbrains.kotlin.android' version "$kotlin_version" apply false
 }
 
 subprojects {
     tasks.withType(JavaCompile).configureEach {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
-            jvmTarget = "17"
-        }
     }
 }
