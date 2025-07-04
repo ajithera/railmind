@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.RailMind" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/green</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

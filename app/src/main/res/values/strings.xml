@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RailMind</string>
+    <string name="travel_pattern_label">Select Travel Pattern</string>
+    <string name="departure_day_label">Departure Day</string>
+    <string name="return_day_label">Return Day</string>
+    <string name="time_range_label">Select Time Range</string>
+    <string name="set_reminder_label">Set Reminder</string>
+    <string name="reminder_time_label">Reminder Time</string>
+    <string name="upcoming_reminders_label">Upcoming Reminders</string>
+    <string name="edit_reminder_label">Edit Reminder</string>
+    <string name="delete_reminder_label">Delete Reminder</string>
+    <string name="no_reminders_message">No upcoming reminders.</string>
+    <string name="settings_label">Settings</string>
+    <string name="notification_preferences_label">Notification Preferences</string>
+    <string name="made_with_love">‘Made with love for hybrid employees’</string>
+</resources>

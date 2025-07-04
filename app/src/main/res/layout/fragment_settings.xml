@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.SettingsFragment">
+
+    <TextView
+        android:id="@+id/settings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/reminder_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder Time"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TimePicker
+        android:id="@+id/reminder_time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"/>
+
+    <TextView
+        android:id="@+id/notification_preference_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification Preference"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Switch
+        android:id="@+id/notification_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Notifications"/>
+
+    <Button
+        android:id="@+id/save_settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Settings"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="'Made with love for hybrid employees'"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>

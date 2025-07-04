@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.ReminderDashboardFragment">
+
+    <TextView
+        android:id="@+id/reminder_dashboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upcoming Reminders"
+        android:textSize="24sp"
+        android:textColor="@color/primaryColor"
+        android:layout_marginBottom="16dp"/>
+
+    <RecyclerView
+        android:id="@+id/reminder_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/add_reminder_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Reminder"
+        android:backgroundTint="@color/primaryColor"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="'Made with love for hybrid employees'"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/secondaryColor"/>
+
+</LinearLayout>
