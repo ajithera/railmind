@@ -1,9 +1,23 @@
+buildscript {
+    ext {
+        kotlin_version = '1.8.21'
+    }
+}
+
 plugins {
     id 'com.android.application' version '8.0.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.21' apply false
 }
 
-allprojects {
-    tasks.withType(JavaCompile) {
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+}
