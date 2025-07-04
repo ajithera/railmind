@@ -1,4 +1,13 @@
 plugins {
     id 'com.android.application'
-    // ...existing code...
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+}
+
+android {
+    // ...existing android configuration...
+}
+
+dependencies {
+    // ...existing dependencies...
 }
