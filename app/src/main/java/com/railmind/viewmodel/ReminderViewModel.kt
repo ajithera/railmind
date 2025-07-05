@@ -47,7 +47,7 @@ class ReminderViewModel(
     fun updateReminder(reminder: Reminder) {
         viewModelScope.launch {
             try {
-                reminderDao.updateReminder(reminder)
+                reminderDao.update(reminder)
                 loadReminders()
             } catch (e: Exception) {
                 _error.value = "Failed to update reminder: ${e.localizedMessage}"

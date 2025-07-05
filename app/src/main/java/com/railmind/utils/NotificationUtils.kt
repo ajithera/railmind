@@ -46,7 +46,7 @@ object NotificationUtils {
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle("Travel Reminder")
-            .setContentText("Don't forget your upcoming travel: ${reminder.destination}")
+            .setContentText("Don't forget your upcoming travel: ${reminder.travelPattern}")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)

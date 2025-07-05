@@ -83,9 +83,24 @@ class ReminderDashboardFragment : Fragment() {
     }
 
     private fun onReminderClicked(reminder: Reminder) {
-        // Show a bottom sheet with edit/delete options
-        ReminderOptionsBottomSheet.newInstance(reminder.id)
-            .show(childFragmentManager, "reminder_options")
+        // 1. Create an instance of the bottom sheet, passing the whole Reminder object
+        val bottomSheet = ReminderOptionsBottomSheet.newInstance(reminder)
+
+        // 2. Set the listener for the delete button.
+        // This code block will run when the delete button inside the sheet is clicked.
+        bottomSheet.setOnDeleteClickListener { reminderToDelete ->
+            reminderViewModel.deleteReminder(reminderToDelete)
+        }
+
+        // 3. Set the listener for the edit button.
+        bottomSheet.setOnEditClickListener { _ -> // Renamed 'reminderToEdit' to '_'
+            // TODO: Handle the edit logic, for example:
+            // val action = ReminderDashboardFragmentDirections.actionDashboardToEditFragment(reminderToEdit)
+            // findNavController().navigate(action)
+        }
+
+        // 4. Show the configured bottom sheet
+        bottomSheet.show(childFragmentManager, "reminder_options")
     }
 
     override fun onDestroyView() {

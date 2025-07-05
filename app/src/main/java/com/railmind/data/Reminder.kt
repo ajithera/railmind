@@ -1,9 +1,12 @@
 package com.railmind.data
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 @Entity(tableName = "reminders")
 data class Reminder(
     @PrimaryKey(autoGenerate = true)
@@ -15,4 +18,4 @@ data class Reminder(
     val isEnabled: Boolean = true,
     val departureDay: String,
     val returnDay: String
-)
+) : Parcelable

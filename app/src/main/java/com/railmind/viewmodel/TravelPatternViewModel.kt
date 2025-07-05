@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.railmind.data.Reminder
 import com.railmind.data.ReminderDao
+import com.railmind.utils.DateUtils
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -30,12 +31,12 @@ class TravelPatternViewModel(
                 while (calendar.before(endDate)) {
                     // Create departure reminder
                     if (isDayMatch(calendar, departureDay)) {
-                        createReminder(calendar.time, "Departure")
+                        createReminder(calendar.time, "Departure", departureDay, returnDay)
                     }
 
                     // Create return reminder
                     if (isDayMatch(calendar, returnDay)) {
-                        createReminder(calendar.time, "Return")
+                        createReminder(calendar.time, "Return", departureDay, returnDay)
                     }
 
                     calendar.add(Calendar.DAY_OF_YEAR, 1)
@@ -62,13 +63,22 @@ class TravelPatternViewModel(
         return calendar.get(Calendar.DAY_OF_WEEK) == dayOfWeek
     }
 
-    private suspend fun createReminder(date: Date, type: String) {
+    private suspend fun createReminder(travelDate: Date, type: String, departureDay: String, returnDay: String) {
+        // 1. Convert the travel Date to a Calendar
+        val travelCalendar = Calendar.getInstance().apply { time = travelDate }
+
+        // 2. Call your utility function with the Calendar
+        val reminderDateFromUtils = DateUtils.calculateReminderDate(travelCalendar)
+
         val reminder = Reminder(
-            id = 0,
-            travelDate = date,
+            id = 0, // ID is auto-generated
+            travelDate = travelDate,
+            // 3. Convert the result back to a Date for the database entity
+            reminderDate = reminderDateFromUtils.time,
             travelPattern = "$type Journey",
             isEnabled = true,
-            createdAt = Date()
+            departureDay = departureDay,
+            returnDay = returnDay
         )
         reminderDao.insertReminder(reminder)
     }
